@@ -4,6 +4,8 @@ import (
 	"golang-starter-pack/model"
 )
 
+// Interface
+
 type Store interface {
 	GetBySlug(string) (*model.Article, error)
 	GetUserArticleBySlug(userID uint, slug string) (*model.Article, error)
