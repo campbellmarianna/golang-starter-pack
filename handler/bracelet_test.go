@@ -13,23 +13,23 @@ import (
 	"golang-starter-pack/router/middleware"
 	"golang-starter-pack/utils"
 )
-
-func TestListBraceletsCaseSuccess(t *testing.T) {
-	tearDown()
-	setup()
-	e := router.New()
-	req := httptest.NewRequest(echo.GET, "/api/bracelets", nil)
-	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-	rec := httptest.NewRecorder()
-	c := e.NewContext(req, rec)
-	assert.NoError(t, h.Bracelets(c))
-	if assert.Equal(t, http.StatusOK, rec.Code) {
-		var aa braceletListResponse
-		err := json.Unmarshal(rec.Body.Bytes(), &aa)
-		assert.NoError(t, err)
-		assert.Equal(t, 2, aa.BraceletsCount)
-	}
-}
+// May potential list bracelets in the future
+// func TestListBraceletsCaseSuccess(t *testing.T) {
+// 	tearDown()
+// 	setup()
+// 	e := router.New()
+// 	req := httptest.NewRequest(echo.GET, "/api/bracelets", nil)
+// 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+// 	rec := httptest.NewRecorder()
+// 	c := e.NewContext(req, rec)
+// 	assert.NoError(t, h.Bracelets(c))
+// 	if assert.Equal(t, http.StatusOK, rec.Code) {
+// 		var aa braceletListResponse
+// 		err := json.Unmarshal(rec.Body.Bytes(), &aa)
+// 		assert.NoError(t, err)
+// 		assert.Equal(t, 2, aa.BraceletsCount)
+// 	}
+// }
 
 func TestGetBraceletsCaseSuccess(t *testing.T) {
 	tearDown()

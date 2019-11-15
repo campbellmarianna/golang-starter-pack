@@ -10,7 +10,6 @@ func (h *Handler) Register(v1 *echo.Group) {
 	bracelets.DELETE("/:slug", h.DeleteBracelet)
 	bracelets.POST("/:slug/beads", h.AddBead)
 	bracelets.DELETE("/:slug/beads/:id", h.DeleteBead)
-	bracelets.GET("", h.Bracelets)
 	bracelets.GET("/:slug", h.GetBracelet)
 	bracelets.GET("/:slug/beads", h.GetBeads)
 }
