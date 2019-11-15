@@ -10,6 +10,7 @@ type Bracelet struct {
 	Text       string `gorm:"not null"`
 	ThreadColor string
 	Font        string
+	Beads    []Bead
 }
 
 type Bead struct {

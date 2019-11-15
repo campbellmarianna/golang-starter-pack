@@ -12,5 +12,6 @@ type Store interface {
 
 	AddBead(*model.Bracelet, *model.Bead) error
 	GetBeadsBySlug(string) ([]model.Bead, error)
+	GetBeadByID(uint) (*model.Bead, error)
 	DeleteBead(*model.Bead) error
 }

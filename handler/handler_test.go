@@ -66,7 +66,7 @@ func loadFixtures() error {
 	bs.CreateBracelet(&b)
 	bs.AddBead(&b, &model.Bead{
 		Color:      "pink",
-		BraceletID: 1
+		BraceletID: 1,
 	})
 
 	b2 := model.Bracelet{

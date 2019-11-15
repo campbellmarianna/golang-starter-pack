@@ -45,7 +45,7 @@ func (bs *BraceletStore) AddBracelet(a *model.Bracelet, c *model.Bead) error {
 	if err != nil {
 		return err
 	}
-	return as.db.Where(c.ID).First(c).Error
+	return bs.db.Where(c.ID).First(c).Error
 }
 
 func (bs *BraceletStore) GetBeadsBySlug(slug string) ([]model.Bead, error) {
@@ -58,6 +58,18 @@ func (bs *BraceletStore) GetBeadsBySlug(slug string) ([]model.Bead, error) {
 	}
 	return m.Beads, nil
 }
+
+func (as *BraceletStore) GetBeadByID(id uint) (*model.Bead, error) {
+	var m model.Bead
+	if err := as.db.Where(id).First(&m).Error; err != nil {
+		if gorm.IsRecordNotFoundError(err) {
+			return nil, nil
+		}
+		return nil, err
+	}
+	return &m, nil
+}
+
 
 func (bs *BraceletStore) DeleteBead(b *model.Bead) error {
 	return bs.db.Delete(b).Error

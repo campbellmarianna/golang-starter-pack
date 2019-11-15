@@ -177,7 +177,7 @@ func TestDeleteBeadCaseSuccess(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 	err := func(context echo.Context) error {
-		return h.DeleteComment(c)
+		return h.DeleteBead(c)
 	}(c)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, rec.Code)

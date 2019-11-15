@@ -31,11 +31,11 @@ func (r *braceletCreateRequest) bind(c echo.Context, a *model.Bracelet) error {
 
 type createBeadRequest struct {
 	Bead struct {
-		Body string `json:"body" validate:"required"`
+		Color string `json:"color" validate:"required"`
 	} `json:"bead"`
 }
 
-func (r *createBeadRequest) bind(c echo.Context, cm *model.Bead) error {
+func (r *createBeadRequest) bind(c echo.Context, bm *model.Bead) error {
 	if err := c.Bind(r); err != nil {
 		return err
 	}

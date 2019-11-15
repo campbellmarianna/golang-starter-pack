@@ -2,14 +2,11 @@ package handler
 
 import (
 	"github.com/labstack/echo/v4"
-	"golang-starter-pack/router/middleware"
-	"golang-starter-pack/utils"
 )
 
 func (h *Handler) Register(v1 *echo.Group) {
 	bracelets := v1.Group("/bracelets")
 	bracelets.POST("", h.CreateBracelet)
-	bracelets.PUT("/:slug", h.UpdateBracelet)
 	bracelets.DELETE("/:slug", h.DeleteBracelet)
 	bracelets.POST("/:slug/beads", h.AddBead)
 	bracelets.DELETE("/:slug/beads/:id", h.DeleteBead)

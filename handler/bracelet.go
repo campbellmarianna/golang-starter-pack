@@ -1,10 +1,8 @@
 package handler
 
 import (
-	"errors"
 	"net/http"
 	"strconv"
-
 	"github.com/labstack/echo/v4"
 	"golang-starter-pack/model"
 	"golang-starter-pack/utils"
@@ -32,8 +30,9 @@ func (h *Handler) Bracelets(c echo.Context) error {
 		limit = 20
 	}
 	var bracelets []model.Bracelet
+	var count int
 	
-	return c.JSON(http.StatusOK, newBraceletListResponse(bracelets))
+	return c.JSON(http.StatusOK, newBraceletListResponse(bracelets, count))
 }
 
 func (h *Handler) CreateBracelet(c echo.Context) error {
@@ -52,7 +51,7 @@ func (h *Handler) CreateBracelet(c echo.Context) error {
 
 func (h *Handler) DeleteBracelet(c echo.Context) error {
 	slug := c.Param("slug")
-	a, err := h.braceletStore.GetUserBraceletBySlug(slug)
+	a, err := h.braceletStore.GetBySlug(slug)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, utils.NewError(err))
 	}
@@ -101,14 +100,14 @@ func (h *Handler) DeleteBead(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, utils.NewError(err))
 	}
-	cm, err := h.braceletStore.GetBeadByID(id)
+	bm, err := h.braceletStore.GetBeadByID(id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, utils.NewError(err))
 	}
-	if cm == nil {
+	if bm == nil {
 		return c.JSON(http.StatusNotFound, utils.NotFound())
 	}
-	if err := h.braceletStore.DeleteBead(cm); err != nil {
+	if err := h.braceletStore.DeleteBead(bm); err != nil {
 		return c.JSON(http.StatusInternalServerError, utils.NewError(err))
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{"result": "ok"})
