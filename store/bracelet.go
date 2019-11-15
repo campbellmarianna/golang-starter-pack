@@ -21,6 +21,7 @@ func (bs *BraceletStore) CreateBracelet(a *model.Bracelet) error {
 	if err := tx.Create(&a).Error; err != nil {
 		return err
 	}
+	return tx.Commit().Error
 }
 
 func (bs *BraceletStore) GetBySlug(s string) (*model.Bracelet, error) {
@@ -40,7 +41,7 @@ func (bs *BraceletStore) DeleteBracelet(a *model.Bracelet) error {
 }
 
 // Bead Functions
-func (bs *BraceletStore) AddBracelet(a *model.Bracelet, c *model.Bead) error {
+func (bs *BraceletStore) AddBead(a *model.Bracelet, c *model.Bead) error {
 	err := bs.db.Model(a).Association("Beads").Append(c).Error
 	if err != nil {
 		return err

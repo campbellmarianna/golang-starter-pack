@@ -21,14 +21,6 @@ func (h *Handler) GetBracelet(c echo.Context) error {
 }
 
 func (h *Handler) Bracelets(c echo.Context) error {
-	offset, err := strconv.Atoi(c.QueryParam("offset"))
-	if err != nil {
-		offset = 0
-	}
-	limit, err := strconv.Atoi(c.QueryParam("limit"))
-	if err != nil {
-		limit = 20
-	}
 	var bracelets []model.Bracelet
 	var count int
 	
