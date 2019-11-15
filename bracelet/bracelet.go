@@ -5,7 +5,6 @@ import (
 )
 
 // Interface
-
 type Store interface {
 	CreateBracelet(*model.Bracelet) error
 	GetBySlug(string) (*model.Bracelet, error)
